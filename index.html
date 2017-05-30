@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<!-- Demo : smartEdit.js | author : Nishchay Garg-->
+<head>
+    <meta charset="UTF-8" />
+    <title>Smart Edit</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:300|Roboto:100" rel="stylesheet" />
+
+    <style>
+        body {
+            margin: 0px;
+            font-size: 14px;
+            margin-top: 10%;
+            font-family: 'Roboto Slab', segoe ui, sans-serif;
+            font-weight: 300;
+            color: rgb(60, 60, 60);
+            user-select: none;
+        }
+        
+        a {
+            color: rgb(0, 0, 0);
+        }
+        
+        #desBy {
+            text-align: center;
+        }
+        
+        #sandBox {
+            text-align: center;
+            margin: 6px auto 8px;
+            line-height: 1;
+            box-sizing: border-box;
+            font-size: 28px;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 300;
+        }
+        
+        #userLabel {
+            text-align: center;
+            cursor: pointer;
+        }
+        
+        #getName {
+            max-width: 736px;
+            position: relative;
+            margin: 20px 10px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        @media only screen and (max-device-width: 640px) {
+            #getName {
+                margin: 20px 10px;
+            }
+        }
+        
+        @media only screen and (min-device-width: 768px) {
+            #sandBox {
+                font-size: 48px;
+                margin: 20px auto;
+            }
+            #sandBox span {
+                transition: all 100ms linear;
+            }
+        }
+        
+        #inputDiv {
+            height: 40px;
+            background-color: #fff;
+            border: 1px solid #d9d9d9;
+            box-sizing: border-box;
+        }
+        
+        #inputBox {
+            font-size: 18px;
+            outline: none;
+            border: none;
+            padding: 0 8px;
+            margin: 0;
+            width: 95%;
+            height: 100%;
+            font-family: 'Roboto Slab', segoe ui, sans-serif;
+            font-weight: 300;
+        }
+        
+        #submitBtn {
+            position: absolute;
+            top: 0;
+            right: 0;
+            border-radius: 0;
+            width: 38px;
+            height: 40px;
+            box-sizing: border-box;
+            background-color: rgb(60, 60, 60);
+            padding: 0;
+            margin: 0;
+            border: 0;
+        }
+        
+        #submitIcon {
+            width: 24px;
+            height: 24px;
+            margin: auto;
+            transition: all 300ms linear;
+        }
+        
+        #cmntBox {
+            text-align: center;
+        }
+        
+        #tryAgain {
+            text-align: center;
+            text-decoration: underline;
+            color: #000;
+            cursor: pointer;
+        }
+    </style>
+    <script src="smartEdit.min.js"></script>
+</head>
+
+<body>
+
+    <p id="desBy">
+    </p>
+
+    <p id="sandBox">
+    </p>
+    <p id="userLabel">
+    </p>
+    <div id="getName">
+        <div id="inputDiv">
+            <input type="text" id="inputBox" autocomplete="off" maxlength="16" />
+        </div>
+        <button id="submitBtn">
+            <img id="submitIcon" src="images/icon.png" />
+        </button>
+
+    </div>
+    <p id="cmntBox">
+
+    </p>
+    <p id="tryAgain">
+    </p>
+
+    <script>
+	!function(){var i={},e={},t="nishchay",n="https://www.github.com/nicechay/smartEdit";e.id=function(i){return document.getElementById(i)},i.pa=e.id("desBy"),i.pb=e.id("sandBox"),i.pc=e.id("userLabel"),i.pd=e.id("cmntBox"),i.pe=e.id("tryAgain"),i.input=e.id("inputBox"),i.submit=e.id("submitBtn"),i.box=e.id("inputDiv"),i.icon=e.id("submitIcon"),e.init=function(){i.pa.innerHTML="Designed By",i.pb.innerHTML="Smart Edit",i.pc.innerHTML="Enter your first name",i.pd.innerHTML="...",i.pe.innerHTML="Try Again",i.input.disabled=!1},e.stateA=function(){i.pa.style.visibility="hidden",i.pb.innerHTML="Smart Edit",i.pb.style.visibility="visible",i.pc.innerHTML="Enter your first name",i.pc.style.visibility="visible",i.pd.style.visibility="hidden",i.pe.style.visibility="hidden",i.input.disabled=!1},e.stateB=function(){i.pa.style.visibility="hidden",i.pb.style.visibility="visible",i.pc.style.visibility="hidden",i.input.disabled=!0,i.pd.style.visibility="hidden",i.pe.style.visibility="hidden",i.pb.innerHTML=i.input.value,e.love();var n=new transformTo(i.pb,t);n.run(e.stateC)},e.stateC=function(){i.pa.innerHTML="Designed By",i.pa.style.visibility="visible",i.pb.style.visibility="visible",i.pc.innerHTML='<a href="'+n+'" >'+n+"</a>",i.pc.style.visibility="visible",i.pd.style.visibility="hidden",i.pe.style.visibility="visible",i.pe.innerHTML="Try Again",i.input.disabled=!0,i.input.value="",e.unlove()},e.stateD=function(){i.pa.style.visibility="hidden",i.pc.style.visibility="hidden",i.pd.style.visibility="visible",i.pe.style.visibility="visible",i.input.disabled=!0},e.validate=function(){var n=i.input.value;return n=n.toLowerCase(),n.length<=2?(i.pd.style.visibility="visible",i.pd.innerHTML="The input is too short !!",console.log("hello"),e.stateD(),!1):n.length>25?(i.pd.style.visibility="visible",i.pd.innerHTML="The input is too long !!",e.stateD(),!1):n==t?(i.pd.style.visibility="visible",i.pd.innerHTML="I knew you would try this name :)",e.stateD(),!1):(i.input.value=n,e.stateB(),!0)},i.input.addEventListener("keypress",function(i){var t=i.which||i.keyCode;13==t&&e.validate()}),i.input.addEventListener("keyup",function(e){var t=e.which||e.keyCode;t>=32&&64>=t&&(i.input.value=i.input.value.substr(0,i.input.value.length-1))}),i.pe.addEventListener("click",function(){e.init(),e.stateA()}),i.submit.onclick=function(){e.validate()},e.love=function(){/[a,e,i,o,u]/.test(i.input.value.toLowerCase().slice(-1))&&(i.icon.src="images/fav.png")},e.unlove=function(){i.icon.src="images/icon.png"},e.init(),e.stateA()}();
+    </script>
+
+</body>
+
+</html>
